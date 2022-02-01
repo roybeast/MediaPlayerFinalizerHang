@@ -1,0 +1,27 @@
+﻿<Window x:Class="MediaPlayerFinalizerHang.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaPlayerFinalizerHang"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel Orientation="Vertical">
+        <TextBox Text="There should be a video playing below. If not, then closing the window will result in a finalizer hang." />
+        <Button Content="Play Good Video" Click="GoodButton_Click" />
+        <Button Content="Play Bad Video" Click="BadButton_Click" />
+        <TextBox Text="{Binding Title, Mode=OneWay}" />
+        <Rectangle x:Name="VideoRectangle"
+                Grid.Row="2"
+				Width="{Binding Width}"
+				Height="{Binding Height}">
+            <Rectangle.Fill>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <VideoDrawing Player="{Binding MediaPlayer}" Rect="{Binding Rect}" />
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+    </StackPanel>
+</Window>
